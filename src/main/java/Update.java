@@ -1,4 +1,6 @@
-import com.sun.security.jgss.GSSUtil;
+import entity.Characteristic;
+import entity.Product;
+import entity.Value;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,6 +10,14 @@ public class Update {
     public static void main(String[] args) {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("main");
         EntityManager manager = factory.createEntityManager();
+
+        TypedQuery<Product> productsQuery = manager.createQuery(
+                "select p from Product p order by p.name", Product.class);
+
+        List<Product> products = productsQuery.getResultList();
+        for (Product product : products) {
+            System.out.println(product.getName() + " [" + product.getId() + "]");
+        }
 
 
 
@@ -79,8 +89,8 @@ public class Update {
 
 
 
-         /*  List<Value> valueList = product.getValues();
-            for(Value value : valueList){
+         /*  List<entity.Value> valueList = product.getValues();
+            for(entity.Value value : valueList){
                 String valueInput = scanner.nextLine();
                 if(!valueInput.equals("")){
                     value.setValue(valueInput);

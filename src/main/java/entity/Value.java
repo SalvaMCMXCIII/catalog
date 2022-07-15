@@ -1,3 +1,8 @@
+package entity;
+
+import entity.Characteristic;
+import entity.Product;
+
 import javax.persistence.*;
 
 @Entity
